@@ -62,20 +62,22 @@ namespace play_motion
 
   /**
    * \param nh Nodehandle with the namespace containing the motions
-   *           (ie ros::NodeHandle nh("play_motion"))
+   *           (When omitted, defaults to ros::NodeHandle nh("play_motion"))
    * \throws xh::XmlrpcHelperException if motion_id cannot be found
    */
   void getMotionJoints(const ros::NodeHandle &nh, const std::string& motion_id,
                        JointNames& motion_joints);
+  void getMotionJoints(const std::string& motion_id, JointNames& motion_joints);
 
 
   /**
    * \param nh Nodehandle with the namespace containing the motions
-   *           (ie ros::NodeHandle nh("play_motion"))
+   *           (When omitted, defaults to ros::NodeHandle nh("play_motion"))
    * \throws xh::XmlrpcHelperException if motion_id cannot be found
    */
   void getMotionPoints(const ros::NodeHandle &nh, const std::string& motion_id,
                        Trajectory& motion_points);
+  void getMotionPoints(const std::string& motion_id, Trajectory& motion_points);
 
 
   /**
@@ -88,18 +90,20 @@ namespace play_motion
   /**
    * \brief getMotions obtain all motion names
    * \param nh Nodehandle with the namespace containing the motions
-   *           (ie ros::NodeHandle nh("play_motion"))
+   *           (When omitted, defaults to ros::NodeHandle nh("play_motion"))
    * \throws xh::XmlrpcHelperException if no motions available
    */
   void getMotionIds(const ros::NodeHandle &nh, MotionNames& motion_ids);
+  void getMotionIds(MotionNames& motion_ids);
 
   /**
    * \param nh Nodehandle with the namespace containing the motions
-   *           (ie ros::NodeHandle nh("play_motion"))
+   *           (When omitted, defaults to ros::NodeHandle nh("play_motion"))
    * \param motion_id Motion identifier
    * \return True if the motion exists, false otherwise
    */
   bool motionExists(const ros::NodeHandle &nh, const std::string &motion_id);
+  bool motionExists(const std::string &motion_id);
 
   /**
    * \brief isAlreadyThere checks if the source trajPoint matches the target
@@ -156,13 +160,14 @@ namespace play_motion
   /**
    * \brief Parse a motion specified in the ROS parameter server into a data structure.
    * \param[in] nh Nodehandle with the namespace containing the motions
-   *           (ie ros::NodeHandle nh("play_motion"))
+   *           (When omitted, defaults to ros::NodeHandle nh("play_motion"))
    * \param[in] motion_id Motion identifier
    * \param[out] motionInfo Data structure containing parsed motion
    * \throws ros::Exception if the motion does not exist or is malformed.
    */
   void getMotion(const ros::NodeHandle &nh, const std::string &motion_id,
                  MotionInfo &motionInfo);
+  void getMotion(const std::string &motion_id, MotionInfo &motionInfo);
 }
 
 #endif
